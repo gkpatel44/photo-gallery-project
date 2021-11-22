@@ -14,14 +14,19 @@ const [images, setimages] = useState([])
 
     const handlefileupload = (e) => {
         e.preventDefault();
+        console.log(images.file);
     const formData = new FormData();
-    formData.append('file',images)
+    formData.append('file',images.file)
+   
     const option ={
         method:'POST',
-        headers:{'Content-type':'multipart/form-data'},
+        // headers: {
+        //     'Accept': 'application/json',
+        //     'Content-Type': 'multipart/form-data',
+        //   },
         body:formData
     }
-    fetch('url',option)
+    fetch('http://localhost:3040/upload',option)
 
        
     }
