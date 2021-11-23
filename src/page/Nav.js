@@ -1,11 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import '../App.css';
 
 const Nav = () => {
     return (
         <div style={styles.div}>
+            <Link style={styles.link} to="/">Login</Link>
             <Link style={styles.link}  to="/upload" >Upload Files</Link>
-            <Link style={styles.link} to="gallery">Gallery</Link>
+            <Link style={styles.link} to="/gallery">Gallery</Link>
             
         </div>
     )

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import '../App.css';
 
 
 const Upload = () => {
@@ -26,7 +27,10 @@ const [images, setimages] = useState([])
         //   },
         body:formData
     }
-    fetch('http://localhost:3040/upload',option)
+    fetch('http://localhost:3050/upload',option)
+    .then(response=>response.json())
+    .then(data=>console.log(data))
+    .catch(error=>console.log(error))
 
        
     }
