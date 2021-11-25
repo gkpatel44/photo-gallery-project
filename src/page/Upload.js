@@ -6,19 +6,18 @@ import Cards from '../helpers/Cards';
 
 const Upload = () => {
     const [images, setimages] = useState([])
-    const [data, setData] = useState({})
+    const [dataa, setData] = useState({})   
     const location = useLocation();
-
+    const udata=JSON.parse(localStorage.getItem('data'))
 
     useEffect(() => {
         fetchdata();
+        
     }, [])
 
-    const fetchdata = () => {
-        setData(location.state)
-       
+    const fetchdata = () => {        
+        setData(location.state)    
     }
-
 
     const handleupload = (e) => {
         e.preventDefault();
@@ -28,7 +27,7 @@ const Upload = () => {
     }
 
     const handlefileupload = (e) => {
-        console.log("state", location.state);
+        console.log("state", location.state.picture.data.url);
         e.preventDefault();
         console.log(images.file);
         const formData = new FormData();
@@ -46,22 +45,17 @@ const Upload = () => {
             .then(response => response.json())
             .then(data => console.log(data))
             .catch(error => console.log(error))
-
-
     }
 
     return (
+        
+
         <div style={styles.maindiv}>
-            <input
-                type="file"
-                onChange={handleupload}
-            />
+            <input type="file" onChange={handleupload}/>
             <button onClick={handlefileupload}>Upload</button>
-            <Cards  data={data} />
-            
-
-
+            <Cards data={udata} images={udata.picture.data.url} />
         </div>
+
     )
 }
 const styles = {
