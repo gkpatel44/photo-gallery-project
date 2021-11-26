@@ -2,14 +2,18 @@ import React, { useEffect } from 'react'
 import './loginpage.css'
 import FacebookLogin from 'react-facebook-login'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { logout, storedata } from '../redux/action'
 
 const LoginPage = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     useEffect(() => {
        removeuser();
        
     }, [])
     const removeuser =()=>{
+        dispatch(logout())
         localStorage.removeItem("data")
         localStorage.removeItem("token")
     }
@@ -21,6 +25,7 @@ const LoginPage = () => {
         }
         else {
             if (response.accessToken) {
+                dispatch(storedata(response))
                 localStorage.setItem("token", response.accessToken)
                 localStorage.setItem("data", JSON.stringify(response))
                

@@ -7,33 +7,32 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
 export default function Cards(props) {
-  
-  
-
- 
 
   return (
-    <Card sx={{ width: "max-content" , margin:"0 auto" }}>
+    <Card sx={{ width: 'max-content', margin: '0 auto' }}>
+
       <CardMedia
-        component="img"
-        height="100"
-        border-radius= "0px"
-        height= "auto"
-        image={props.images}
         alt="profile"
+        component="img"
+        height="auto 100"
+        border-radius="0px"
+        image={props.images}
       />
+      
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-         {props.data.name}
+        <Typography gutterBottom variant='h5' component='div'>
+          {props.data.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant='body2' color='text.secondary'>
           {props.data.userID}
         </Typography>
       </CardContent>
+
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size='small'>Share</Button>
+        <Button size='small'>Learn More</Button>
       </CardActions>
+
     </Card>
   );
 }
