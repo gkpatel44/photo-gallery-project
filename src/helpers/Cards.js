@@ -8,29 +8,31 @@ import Typography from '@mui/material/Typography';
 
 export default function Cards(props) {
 
- 
-
   return (
-    <Card sx={{ maxWidth: 345 }}>
+    <Card sx={{ width: 'max-content', margin: '0 auto' }}>
+
       <CardMedia
-        component="img"
-        height="140"
-        image={props.data.picture.data.url}
         alt="profile"
+        component="img"
+        height="auto 100"
+        border-radius="0px"
+        image={props.images}
       />
+      
       <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+        <Typography gutterBottom variant='h5' component='div'>
           {props.data.name}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
+        <Typography variant='body2' color='text.secondary'>
+          {props.data.userID}
         </Typography>
       </CardContent>
+
       <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
+        <Button size='small'>Share</Button>
+        <Button size='small'>Learn More</Button>
       </CardActions>
+
     </Card>
   );
 }

@@ -7,12 +7,12 @@
   background-color: #bbbbbb;
   border-radius: 18px;
 }
-h1{
+.container>h1{
   text-align: center;
   color: rgb(146, 17, 17);
 }
 
-img{
+.container>img{
   height:150px;
   width: 150px;
   margin: 20px;

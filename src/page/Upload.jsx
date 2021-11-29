@@ -1,34 +1,39 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
 import '../App.css';
 import Cards from '../helpers/Cards';
 
 
 const Upload = () => {
     const [images, setimages] = useState([])
-    const [data, setData] = useState({})
+    const [dataa, setData] = useState({})
+    const udata = JSON.parse(localStorage.getItem('data'))
+    const states = useSelector(state => state.userdata)
     const location = useLocation();
-
+    const navigate = useNavigate();
 
     useEffect(() => {
         fetchdata();
     }, [])
 
     const fetchdata = () => {
+        console.log(states);
         setData(location.state)
-       
     }
-
 
     const handleupload = (e) => {
         e.preventDefault();
         console.log(e.target.files[0])
         let file = e.target.files[0]
-        setimages({ file })
+        if (file.name.match(/\.(jpg|jpeg|png|gif)$/)) {
+            setimages({ file })
+        }
+        console.log("file type invalid");
     }
 
     const handlefileupload = (e) => {
-        console.log("state", location.state);
+
         e.preventDefault();
         console.log(images.file);
         const formData = new FormData();
@@ -44,24 +49,26 @@ const Upload = () => {
         }
         fetch('http://localhost:3050/upload', option)
             .then(response => response.json())
-            .then(data => console.log(data))
+            .then(data => {
+                console.log(data)
+                if (data.status == 200) {
+                    navigate('/gallery')
+                }
+                console.log(data.msg)
+            })
             .catch(error => console.log(error))
-
-
     }
 
     return (
+
+
         <div style={styles.maindiv}>
-            <input
-                type="file"
-                onChange={handleupload}
-            />
+            <input type="file" onChange={handleupload} />
             <button onClick={handlefileupload}>Upload</button>
-            <Cards  data={data} />
-            
-
-
+            {/* <Cards data={udata} images={udata.picture.data.url} /><br/> */}
+            {states.picture ? <Cards data={states} images={states.picture.data.url} /> : null}
         </div>
+
     )
 }
 const styles = {
